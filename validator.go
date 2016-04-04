@@ -454,7 +454,7 @@ func IsISO3166Alpha3(str string) bool {
 
 // IsDNSName will validate the given string as a DNS name
 func IsDNSName(str string) bool {
-	if str == "" || len(strings.Replace(str,".","",-1)) > 255 {
+	if str == "" || len(strings.Replace(str, ".", "", -1)) > 255 {
 		// constraints already violated
 		return false
 	}
@@ -498,7 +498,7 @@ func IsIPv6(str string) bool {
 
 // IsHost checks if the string is a valid IP (both v4 and v6) or a valid DNS name
 func IsHost(str string) bool {
-	return  IsIP(str) || IsDNSName(str)
+	return IsIP(str) || IsDNSName(str)
 }
 
 // IsMAC check if a string is valid MAC address.
@@ -600,6 +600,10 @@ func IsSSN(str string) bool {
 // IsSemver check if string is valid semantic version
 func IsSemver(str string) bool {
 	return rxSemver.MatchString(str)
+}
+
+func IsPhoneNumber(str string) bool {
+	return rxPhoneNumber.MatchString(str)
 }
 
 // ByteLength check string's length
